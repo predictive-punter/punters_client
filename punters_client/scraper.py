@@ -6,6 +6,18 @@ import tzlocal
 from . import __version__
 
 
+AUSTRALIAN_STATES = (
+    'australian-capital-territory',
+    'new-south-wales',
+    'northern-territory',
+    'queensland',
+    'south-australia',
+    'tasmania',
+    'victoria',
+    'western-australia'
+    )
+
+
 class Scraper:
     """Provide web scraping functionality for www.punters.com.au"""
 
@@ -34,7 +46,7 @@ class Scraper:
         response.raise_for_status()
         return self.parse_html(response.text)
     
-    def scrape_meets(self, date):
+    def scrape_meets(self, date, meet_url_pattern='/({states})/'.format(states='|'.join(AUSTRALIAN_STATES))):
         """Scrape a list of meets occurring on the specified date"""
 
         meets = []
@@ -44,17 +56,21 @@ class Scraper:
         except ValueError:
             pass
         date = date.astimezone(self.SOURCE_TIMEZONE).replace(hour=0, minute=0, second=0, microsecond=0)
+        date_string = date.strftime('%Y-%m-%d')
 
-        html = self.get_html('https://www.punters.com.au/racing-results/{date:%Y-%m-%d}/'.format(date=date))
+        html = self.get_html('https://www.punters.com.au/racing-results/{date}/'.format(date=date_string))
         if html is not None:
-            
-            for link in html.cssselect('a.label-link'):
 
-                meets.append({
-                    'date':             date,
-                    'track':            link.text_content().strip(),
-                    'url':              self.fix_url(link.get('href')),
-                    'scraper_version':  __version__
-                })
+            for link in html.cssselect('a.label-link'):
+                link_href = link.get('href')
+                if date_string in link_href:
+                    if meet_url_pattern is not None and re.search(meet_url_pattern, link_href):
+
+                        meets.append({
+                            'date':             date,
+                            'track':            link.text_content().strip(),
+                            'url':              self.fix_url(link.get('href')),
+                            'scraper_version':  __version__
+                        })
 
         return meets

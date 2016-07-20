@@ -3,17 +3,23 @@ from datetime import datetime
 import cache_requests
 from lxml import html
 import punters_client
+import pytest
 import pytz
 import redis
 import requests
 
 
-def test_expected_meets():
-    """The scrape_meets method should return a list of dictionaries containing all expected values"""
+@pytest.fixture(scope='module')
+def date():
+
+    return datetime(2016, 2, 1)
+
+
+@pytest.fixture(scope='module')
+def expected_meets(date):
 
     source_timezone = pytz.timezone('Australia/Melbourne')
-    date = datetime(2016, 2, 1)
-    expected_meets = [
+    return [
         {
             'date':             source_timezone.localize(date),
             'track':            'Kilmore',
@@ -28,6 +34,10 @@ def test_expected_meets():
         }
     ]
 
+
+@pytest.fixture(scope='module')
+def scraped_meets(date):
+
     http_client = None
     try:
         http_client = cache_requests.Session(connection=redis.fromurl(''))
@@ -38,7 +48,12 @@ def test_expected_meets():
             http_client = requests.Session()
     html_parser = html.fromstring
     scraper = punters_client.Scraper(http_client, html_parser)
-    scraped_meets = scraper.scrape_meets(date)
+
+    return scraper.scrape_meets(date)
+
+
+def test_expected_meets(expected_meets, scraped_meets):
+    """The scrape_meets method should return a list of dictionaries containing all expected values"""
 
     for expected_meet in expected_meets:
 
@@ -52,3 +67,17 @@ def test_expected_meets():
             assert found_meet[key] == expected_meet[key]
         for key in found_meet:
             assert expected_meet[key] == found_meet[key]
+
+
+def test_unexpected_meets(expected_meets, scraped_meets):
+    """The scrape_meets method should return a list of dictionaries that does not contain any unexpected values"""
+
+    for scraped_meet in scraped_meets:
+
+        found_meet = None
+        for expected_meet in expected_meets:
+            if expected_meet['date'] == scraped_meet['date'] and expected_meet['track'] == scraped_meet['track']:
+                found_meet = expected_meet
+                break
+
+        assert found_meet is not None
