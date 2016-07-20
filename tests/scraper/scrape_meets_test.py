@@ -20,6 +20,7 @@ def expected_meets(date):
         date = source_timezone.localize(date)
     except ValueError:
         date = date.astimezone(source_timezone)
+    date = date.replace(hour=0, minute=0, second=0, microsecond=0)
 
     return [
         {
