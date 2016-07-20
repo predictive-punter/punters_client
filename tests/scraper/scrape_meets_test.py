@@ -2,8 +2,9 @@ from datetime import datetime
 
 import punters_client
 import pytest
-import pytz
 import tzlocal
+
+from common import check_expected_items, check_unexpected_items
 
 
 @pytest.fixture(scope='module', params=[datetime(2016, 2, 1), tzlocal.get_localzone().localize(datetime(2016, 2, 1))])
@@ -13,9 +14,8 @@ def date(request):
 
 
 @pytest.fixture(scope='module')
-def expected_meets(date):
+def expected_meets(date, source_timezone):
 
-    source_timezone = pytz.timezone('Australia/Melbourne')
     try:
         date = source_timezone.localize(date)
     except ValueError:
@@ -47,29 +47,10 @@ def scraped_meets(date, scraper):
 def test_expected_meets(expected_meets, scraped_meets):
     """The scrape_meets method should return a list of dictionaries containing all expected values"""
 
-    for expected_meet in expected_meets:
-
-        found_meet = None
-        for scraped_meet in scraped_meets:
-            if scraped_meet['date'] == expected_meet['date'] and scraped_meet['track'] == expected_meet['track']:
-                found_meet = scraped_meet
-                break
-
-        for key in expected_meet:
-            assert found_meet[key] == expected_meet[key]
-        for key in found_meet:
-            assert expected_meet[key] == found_meet[key]
+    check_expected_items(expected_meets, scraped_meets, ['date', 'track'])
 
 
 def test_unexpected_meets(expected_meets, scraped_meets):
     """The scrape_meets method should return a list of dictionaries that does not contain any unexpected values"""
 
-    for scraped_meet in scraped_meets:
-
-        found_meet = None
-        for expected_meet in expected_meets:
-            if expected_meet['date'] == scraped_meet['date'] and expected_meet['track'] == scraped_meet['track']:
-                found_meet = expected_meet
-                break
-
-        assert found_meet is not None
+    check_unexpected_items(expected_meets, scraped_meets, ['date', 'track'])
