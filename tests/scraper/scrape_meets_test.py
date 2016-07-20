@@ -3,27 +3,33 @@ from datetime import datetime
 import punters_client
 import pytest
 import pytz
+import tzlocal
 
 
-@pytest.fixture(scope='module')
-def date():
+@pytest.fixture(scope='module', params=[datetime(2016, 2, 1), tzlocal.get_localzone().localize(datetime(2016, 2, 1))])
+def date(request):
 
-    return datetime(2016, 2, 1)
+    return request.param
 
 
 @pytest.fixture(scope='module')
 def expected_meets(date):
 
     source_timezone = pytz.timezone('Australia/Melbourne')
+    try:
+        date = source_timezone.localize(date)
+    except ValueError:
+        date = date.astimezone(source_timezone)
+
     return [
         {
-            'date':             source_timezone.localize(date),
+            'date':             date,
             'track':            'Kilmore',
             'url':              'https://www.punters.com.au/racing-results/victoria/Kilmore/2016-02-01/',
             'scraper_version':  punters_client.__version__
         },
         {
-            'date':             source_timezone.localize(date),
+            'date':             date,
             'track':            'Nowra',
             'url':              'https://www.punters.com.au/racing-results/new-south-wales/Nowra/2016-02-01/',
             'scraper_version':  punters_client.__version__
