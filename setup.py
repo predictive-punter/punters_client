@@ -31,7 +31,7 @@ setup(
     author_email='justjasongreen@gmail.com',
     license='MIT',
 
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     setup_requires=[
         'setuptools_scm'
     ],
@@ -41,6 +41,9 @@ setup(
     extras_require={
         'dev':  [
             'check-manifest'
+        ],
+        'test': [
+            'tox'
         ]
     },
     package_data={
