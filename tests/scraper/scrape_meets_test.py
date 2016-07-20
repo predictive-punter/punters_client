@@ -1,12 +1,8 @@
 from datetime import datetime
 
-import cache_requests
-from lxml import html
 import punters_client
 import pytest
 import pytz
-import redis
-import requests
 
 
 @pytest.fixture(scope='module')
@@ -36,18 +32,7 @@ def expected_meets(date):
 
 
 @pytest.fixture(scope='module')
-def scraped_meets(date):
-
-    http_client = None
-    try:
-        http_client = cache_requests.Session(connection=redis.fromurl(''))
-    except BaseException:
-        try:
-            http_client = cache_requests.Session()
-        except BaseException:
-            http_client = requests.Session()
-    html_parser = html.fromstring
-    scraper = punters_client.Scraper(http_client, html_parser)
+def scraped_meets(date, scraper):
 
     return scraper.scrape_meets(date)
 

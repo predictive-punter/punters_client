@@ -34,9 +34,12 @@ class Scraper:
         """Ensure the specified URL is fully qualified by prepending url_root if necessary"""
 
         if not re.search('[a-z]+://.*', url):
-            if not (url.startswith('/') or url_root.endswith('/')):
-                url = '/' + url
-            url = url_root + url
+            if url.startswith('/') and url_root.endswith('/'):
+                url = url_root[:-1] + url
+            elif url.startswith('/') or url_root.endswith('/'):
+                url = url_root + url
+            else:
+                url = url_root + '/' + url
         return url
 
     def get_html(self, url):
