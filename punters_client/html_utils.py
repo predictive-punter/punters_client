@@ -34,6 +34,15 @@ def get_child_text(parent, selector, index=0):
         return child.text_content().strip()
 
 
+def parse_child_text(parent, selector, parser, index=0):
+    """Parse the text content of the specified child element"""
+
+    try:
+        return parser(get_child_text(parent, selector, index))
+    except (TypeError, ValueError):
+        return default
+
+
 def get_child_text_match(parent, selector, pattern, index=0):
     """Get a regex match on the specified child element's text content"""
 

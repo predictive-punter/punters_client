@@ -119,3 +119,29 @@ class Scraper:
                     })
 
         return races
+
+    def scrape_runners(self, race):
+        """Scrape a list of runners competing in the specified race"""
+
+        runners = []
+
+        html = self.get_html(race['url'])
+        if html is not None:
+            
+            for row in html.cssselect('table.form-guide-overview__table tbody tr'):
+
+                runners.append({
+                    'number':               parse_child_text_match_group(row, 'td.form-guide-overview__competitor-number', '(\d+)', int),
+                    'is_scratched':         row.get('class') is not None and 'scratched' in row.get('class').lower(),
+                    'horse_url':            self.fix_url(get_child_attribute(row, 'a.form-guide-overview__horse-link', 'href')),
+                    'horse_has_blinkers':   get_child(row, 'div.has-blinkers') is not None,
+                    'jockey_url':           self.fix_url(get_child_attribute(row, 'a.form-guide-overview__jockey-link', 'href')),
+                    'jockey_is_apprentice': get_child(row, 'a.form-guide-overview__jockey-link span') is not None,
+                    'jockey_claiming':      parse_child_text_match_group(row, 'a.form-guide-overview__jockey-link span', '\(a([\d.]+)\)', float, default=0.0),
+                    'trainer_url':          self.fix_url(get_child_attribute(row, 'a.form-guide-overview__trainer-link', 'href')),
+                    'weight':               parse_child_text(row, 'td.form-guide-overview__competitor-weight', float),
+                    'barrier':              parse_child_text(row, 'td.form-guide-overview__competitor-barrier', int),
+                    'scraper_version':      __version__
+                })
+
+        return runners
