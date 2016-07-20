@@ -6,6 +6,17 @@ punters_client
 This project aims to provide client functionality for the www.punters.com.au web site in Python.
 
 
+.. image:: https://travis-ci.org/justjasongreen/punters_client.svg?branch=master
+    :target: https://travis-ci.org/justjasongreen/punters_client
+    :alt: Build Status
+.. image:: https://coveralls.io/repos/github/justjasongreen/punters_client/badge.svg?branch=master
+    :target: https://coveralls.io/github/justjasongreen/punters_client?branch=master
+    :alt: Coverage Status
+.. image:: https://landscape.io/github/justjasongreen/punters_client/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/justjasongreen/punters_client/master
+    :alt: Code Health
+
+
 ************
 Installation
 ************
