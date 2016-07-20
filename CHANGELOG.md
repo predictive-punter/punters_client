@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Scrape a list of meets occurring on a given date (from @justjasongreen)
+- Scrape a list of races occurring at a given meet (from @justjasongreen)
 
 ## [1.0.0a0] - 2016-07-20
 ### Added
