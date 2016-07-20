@@ -36,7 +36,10 @@ setup(
         'setuptools_scm'
     ],
     install_requires=[
-        'setuptools_scm'
+        'cssselect',
+        'pytz',
+        'setuptools_scm',
+        'tzlocal'
     ],
     extras_require={
         'dev':  [
