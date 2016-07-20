@@ -12,7 +12,7 @@ def scraper():
 
     http_client = None
     try:
-        http_client = cache_requests.Session(connection=redis.fromurl(''))
+        http_client = cache_requests.Session(connection=redis.fromurl('redis://localhost:6379/punters_client_test'))
     except BaseException:
         try:
             http_client = cache_requests.Session()
