@@ -1,0 +1,21 @@
+language: python
+python: '3.5'
+env:
+- TOXENV=py27
+- TOXENV=py35
+install:
+- pip install tox coveralls
+script:
+- tox -e $TOXENV
+after_success:
+- coveralls
+deploy:
+  provider: pypi
+  user: justjasongreen
+  password:
+    secure: ppOsbcbsBaIpzQ7P64RKVFYtnmRECH+URv9vtcVOlGhiSgM2oK0WnJivUnLFkgQOBVCiK/qOwl5ya3yCxdVa8Gq1ly6SkfoMVYQBg2KAizSIdz70kmHJQn0qnWGt7rK4RtuHatmhlczMt1vl+d5sUVM2S2WdSeURywOuLndTDYjmzfgzBzdKf57Yrdi904GSa6feied1/RIy9x7ufjGU2VS0z9kGC4IEa8AnEIRhDVFr73nRvhYv6+SGHNzGIhToLfTQoKIOS8o/BGcOmhp8htCzfYvUaHCFPNVfbKGhnhM+u5/OW73XETLEfTI9wxGPjYLP7cZPw2HLNNET8sNpFm9X0QHQVzs69Eq6/EweibHT9H8KzZf2RQBVAV7TUdXGkzqo4Cqf2Gb1TiXuM/7d8qcwTQwaBDHLeB6ZNS1DM7BKpofrCuosn5m+C0AuH8ls+JpQ86RjQj/efhrvJyWGlqd6gbU9l2U/nQf5bI1Dg0yn6yIhx3A23WMheshst8fy3UskBhlcaLSX08k5ZFnmIiM49m4sdeBweum944yf8jqrpc1E1rlt4YjfbhG8EG2JkYbPXZ6mP80UKt5LKyg+eUR8zjMhRGvEkWwyq9VO/bE9pukJBqn0gEg8p6QSO6qOJvE//BRrGtg9G272dHz5kfEGBX0Gj+F9Ir14/tsnpfo=
+  distributions: sdist bdist_wheel
+  on:
+    repo: justjasongreen/punters_client
+    tags: true
+    condition: $TOXENV = py35
