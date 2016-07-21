@@ -53,6 +53,7 @@ To access the functionality described below, you must first create an instance o
     content = response.text
 
 The HTML parser can be any callable that implements the lxml.html.fromstring API, supporting calls such as the following::
+
     html = html_parser(content)
 
 punters_client has only been tested with cache_requests.Session as a HTTP client and lxml.html.fromstring as a HTML parser. To set up the required dependencies in your own project using the same packages, execute the following code in your Python interpreter::
