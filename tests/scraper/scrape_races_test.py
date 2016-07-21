@@ -43,6 +43,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 13, 10)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Wandong-Bus-and-Coach-Maiden-Plate_411192/',
+                'group':            '',
+                'entry_conditions': [
+                    'Three-Years-Old and Upwards',
+                    'Maiden',
+                    'No sex restriction',
+                    'Set Weights'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -52,6 +62,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 13, 45)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Book-now-for-Valentines-Day-14-Feb-Maiden-Plate_411193/',
+                'group':            '',
+                'entry_conditions': [
+                    'Three-Years-Old',
+                    'Maiden',
+                    'Fillies',
+                    'Set Weights'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -61,6 +81,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 14, 20)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Montmorency-RSL-Maiden-Plate_411194/',
+                'group':            '',
+                'entry_conditions': [
+                    'Three-Years-Old and Upwards',
+                    'Maiden',
+                    'No sex restriction',
+                    'Set Weights'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -70,6 +100,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 14, 55)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Sunday-Sessions-%40-Trackside-7-Feb-Maiden-Plate_411195/',
+                'group':            '',
+                'entry_conditions': [
+                    'Three-Years-Old and Upwards',
+                    'Maiden',
+                    'No sex restriction',
+                    'Set Weights'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -79,6 +119,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 15, 32)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/www.kilmoreracingclub.com.au-BM64-Handicap_411196/',
+                'group':            '',
+                'entry_conditions': [
+                    'No age restriction',
+                    'BenchMark 64',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -88,6 +138,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 16, 12)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Wilson-Medic-One-Rising-Stars-0-58-Handicap_411197/',
+                'group':            '',
+                'entry_conditions': [
+                    'No age restriction',
+                    '0 - 58',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -97,6 +157,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 16, 52)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Sportsmans-Lunch-%40-Trackside-26-Feb-BM64-Handicap_411198/',
+                'group':            '',
+                'entry_conditions': [
+                    'No age restriction',
+                    'BenchMark 64',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -106,6 +176,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2016, 2, 1, 17, 32)),
                 'url':              'https://www.punters.com.au/form-guide/Kilmore_69146/Book-Now-Jet-Roofing-Kilmore-Pacing-Cup-0-58-Handicap_411199/',
+                'group':            '',
+                'entry_conditions': [
+                    'No age restriction',
+                    '0 - 58',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       1735,
+                'track_straight':   320,
+                'track_rail':       'True Entire Circuit',
                 'scraper_version':  punters_client.__version__
             }
         ]
@@ -118,6 +198,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 10, 40)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Emirates-Airline-Plate_382827/',
+                'group':            'G3',
+                'entry_conditions': [
+                    'Two-Years-Old',
+                    'No class restriction',
+                    'Fillies',
+                    'Set Weights'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -127,6 +217,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 11, 20)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/tab.com.au-Trophy_382828/',
+                'group':            '',
+                'entry_conditions': [
+                    'Four-Years-Old and Upwards',
+                    'No class restriction',
+                    'Mares',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -136,6 +236,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 12, 00)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/J.B.-Cummings-AM-Tribute-Plate_382829/',
+                'group':            '',
+                'entry_conditions': [
+                    'No age restriction',
+                    'BenchMark 96',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -145,6 +255,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 4',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 12, 40)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Lavazza-Short-Black_382830/',
+                'group':            '',
+                'entry_conditions': [
+                    'Four-Years-Old and Five-Years-Old',
+                    'BenchMark 90',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -154,6 +274,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 13, 20)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Schweppes-%23FlemingtonFling_382831/',
+                'group':            '',
+                'entry_conditions': [
+                    'Three-Years-Old',
+                    'No class restriction',
+                    'No sex restriction',
+                    'Set Weights plus Penalties'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -163,6 +293,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 14, 00)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Lexus-Hybrid-Plate_382832/',
+                'group':            'LR',
+                'entry_conditions': [
+                    'Three-Years-Old',
+                    'No class restriction',
+                    'Fillies',
+                    'Set Weights plus Penalties'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -172,6 +312,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 15, 00)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Emirates-Melbourne-Cup_383401/',
+                'group':            'G1',
+                'entry_conditions': [
+                    'No age restriction',
+                    'No class restriction',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -181,6 +331,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 15, 55)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/James-Boag%E2%80%99s-Symphony-Stakes_382833/',
+                'group':            'LR',
+                'entry_conditions': [
+                    'No age restriction',
+                    'No class restriction',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -190,6 +350,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 16, 35)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/MSS-Security-Sprint_382834/',
+                'group':            'LR',
+                'entry_conditions': [
+                    'No age restriction',
+                    'No class restriction',
+                    'No sex restriction',
+                    'Handicap'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             },
             {
@@ -199,6 +369,16 @@ def expected_races(meet_id, source_timezone):
                 'track_condition':  'Good 3',
                 'start_time':       source_timezone.localize(datetime(2015, 11, 3, 17, 15)),
                 'url':              'https://www.punters.com.au/form-guide/Flemington_64271/Hong-Kong-Jockey-Club-Stakes_382835/',
+                'group':            'G3',
+                'entry_conditions': [
+                    'Four-Years-Old and Upwards',
+                    'No class restriction',
+                    'Mares',
+                    'Set Weights plus Penalties'
+                ],
+                'track_circ':       2313,
+                'track_straight':   448,
+                'track_rail':       '-',
                 'scraper_version':  punters_client.__version__
             }
         ]

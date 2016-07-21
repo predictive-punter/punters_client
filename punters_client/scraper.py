@@ -108,15 +108,39 @@ class Scraper:
                 header_cell = get_child(table, 'thead tr th')
                 if header_cell is not None:
 
-                    races.append({
+                    race = {
                         'number':           parse_child_text_match_group(header_cell, 'b.capitalize', '(\d+)', int),
                         'distance':         parse_child_attribute(header_cell, 'span.distance abbr.conversion', 'data-value', int),
                         'prize_pool':       parse_prize_pool(header_cell),
                         'track_condition':  get_child_text(header_cell, 'div.details-line span.capitalize', index=1),
                         'start_time':       parse_start_time(header_cell),
                         'url':              self.fix_url(get_child_attribute(header_cell, 'div.details-line span.capitalize a', 'href')),
+                        'group':            None,
+                        'entry_conditions': None,
+                        'track_circ':       None,
+                        'track_straight':   None,
+                        'track_rail':       None,
                         'scraper_version':  __version__
-                    })
+                    }
+
+                    html2 = self.get_html(race['url'])
+                    if html2 is not None:
+
+                        race['group'] = get_child_text(html2, 'span.event-name-title strong')
+
+                        race['entry_conditions'] = [span.text_content().replace('.', '').strip() for span in html2.cssselect('div.event-details span.entry-conditions-text span')]
+
+                        spans = html2.cssselect('div.event-details-bottom div span')
+                        for index in range(0, len(spans) - 1, 2):
+                            key = 'track_' + spans[index].text_content().strip().lower()
+
+                            if key in ('track_circ', 'track_straight'):
+                                race[key] = parse_child_attribute(spans[index + 1], 'abbr.conversion', 'data-value', int)
+
+                            elif key == 'track_rail':
+                                race[key] = spans[index + 1].text_content().strip()
+
+                    races.append(race)
 
         return races
 
