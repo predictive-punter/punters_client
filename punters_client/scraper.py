@@ -17,7 +17,7 @@ AUSTRALIAN_STATES = (
     'tasmania',
     'victoria',
     'western-australia'
-    )
+)
 
 
 class Scraper:
@@ -145,3 +145,48 @@ class Scraper:
                 })
 
         return runners
+
+    def scrape_horse(self, runner):
+        """Scrape the profile of the horse associated with the specified runner"""
+
+        html = self.get_html(runner['horse_url'])
+        if html is not None:
+
+            horse = {
+                'url':              runner['horse_url'],
+                'name':             get_child_text(html, 'div.moduleItem table caption').replace('Details', '').strip(),
+                'colour':           None,
+                'sex':              None,
+                'sire':             None,
+                'dam':              None,
+                'country':          None,
+                'foaled':           None,
+                'scraper_version':  __version__
+            }
+
+            for row in html.cssselect('div.moduleItem table tr'):
+                label = get_child_text(row, 'th')
+                if label is not None:
+                    label = label.replace(':', '').lower()
+
+                    if label == 'profile':
+                        groups = get_child_text_match_groups(row, 'td', 'year old (.*) (.*)')
+                        if groups is not None and len(groups) > 1:
+                            horse['colour'] = groups[0]
+                            horse['sex'] = groups[1]
+
+                    elif label == 'pedigree':
+                        groups = get_child_text_match_groups(row, 'td', '(.*) x (.*)')
+                        if groups is not None and len(groups) > 1:
+                            horse['sire'] = groups[0]
+                            horse['dam'] = groups[1]
+
+                    elif label == 'country':
+                        horse['country'] = get_child_text(row, 'td')
+
+                    elif label == 'foaled':
+                        value = get_child_text(row, 'td')
+                        if value is not None:
+                            horse['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
+
+            return horse
