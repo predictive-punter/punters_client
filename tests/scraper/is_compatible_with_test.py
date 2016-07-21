@@ -7,7 +7,7 @@ import pytest
 @pytest.fixture(scope='module')
 def version_parts():
 
-    return re.search('(\d+).(\d+).(\d+)([a-z]*)?(\d*)?', punters_client.__version__).groups()
+    return re.search('(\d+).(\d+).(\d+)([a-z]+)?(\d+)?', punters_client.__version__).groups()
 
 
 def generate_version(parts):
