@@ -28,3 +28,21 @@ def scraper():
 def source_timezone():
 
     return pytz.timezone('Australia/Melbourne')
+
+
+@pytest.fixture(scope='session')
+def runner():
+
+    return {
+        'number':               1,
+        'is_scratched':         False,
+        'horse_url':            'https://www.punters.com.au/horses/Tycoon-Tony_395471/',
+        'horse_has_blinkers':   False,
+        'jockey_url':           'https://www.punters.com.au/jockeys/Ben-E-Thompson_2143/',
+        'jockey_is_apprentice': True,
+        'jockey_claiming':      1.5,
+        'trainer_url':          'https://www.punters.com.au/trainers/Scott-McIntosh_1010/',
+        'weight':               61.0,
+        'barrier':              2,
+        'scraper_version':      punters_client.__version__
+    }

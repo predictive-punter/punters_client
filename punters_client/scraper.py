@@ -146,21 +146,15 @@ class Scraper:
 
         return runners
 
-    def scrape_horse(self, runner):
-        """Scrape the profile of the horse associated with the specified runner"""
+    def scrape_profile(self, url):
+        """Scrape a profile from the specified URL"""
 
-        html = self.get_html(runner['horse_url'])
+        html = self.get_html(url)
         if html is not None:
 
-            horse = {
-                'url':              runner['horse_url'],
+            profile = {
+                'url':              url,
                 'name':             get_child_text(html, 'div.moduleItem table caption').replace('Details', '').strip(),
-                'colour':           None,
-                'sex':              None,
-                'sire':             None,
-                'dam':              None,
-                'country':          None,
-                'foaled':           None,
                 'scraper_version':  __version__
             }
 
@@ -172,21 +166,31 @@ class Scraper:
                     if label == 'profile':
                         groups = get_child_text_match_groups(row, 'td', 'year old (.*) (.*)')
                         if groups is not None and len(groups) > 1:
-                            horse['colour'] = groups[0]
-                            horse['sex'] = groups[1]
+                            profile['colour'] = groups[0]
+                            profile['sex'] = groups[1]
 
                     elif label == 'pedigree':
                         groups = get_child_text_match_groups(row, 'td', '(.*) x (.*)')
                         if groups is not None and len(groups) > 1:
-                            horse['sire'] = groups[0]
-                            horse['dam'] = groups[1]
+                            profile['sire'] = groups[0]
+                            profile['dam'] = groups[1]
 
                     elif label == 'country':
-                        horse['country'] = get_child_text(row, 'td')
+                        profile['country'] = get_child_text(row, 'td')
 
                     elif label == 'foaled':
                         value = get_child_text(row, 'td')
                         if value is not None:
-                            horse['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
+                            profile['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
 
-            return horse
+            return profile
+
+    def scrape_horse(self, runner):
+        """Scrape the profile of the horse associated with the specified runner"""
+
+        return self.scrape_profile(runner['horse_url'])
+
+    def scrape_jockey(self, runner):
+        """Scrape the profile of the jockey associated with the specified runner"""
+
+        return self.scrape_profile(runner['jockey_url'])
