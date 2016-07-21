@@ -5,14 +5,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
 ### Added
+
 - Scraper.is_compatible_with(version) method (from @justjasongreen)
 - Automate manifest checking by Travis CI (from @justjasongreen)
+
 ### Fixed
+
 - Package version reported correctly when utilised within foreign SCM (from @justjasongreen)
 
 ## [1.0.0a1] - 2016-07-21
+
 ### Added
+
 - Scrape a list of meets occurring on a given date (from @justjasongreen)
 - Scrape a list of races occurring at a given meet (from @justjasongreen)
 - Scrape a list of runners competing in a given race (from @justjasongreen)
@@ -22,7 +28,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Scrape a list of performances associated with a given profile (from @justjasongreen)
 
 ## [1.0.0a0] - 2016-07-20
+
 ### Added
+
 - Create Python package (from @justjasongreen)
 - Implement DevOps support (from @justjasongreen)
 
