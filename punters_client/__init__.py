@@ -1,5 +1,4 @@
-from setuptools_scm import get_version
-__version__ = get_version()
+__version__ = '1.0.0a1'
 
 
 from .scraper import Scraper

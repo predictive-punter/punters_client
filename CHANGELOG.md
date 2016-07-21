@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.0a1]
+## [Unreleased]
+### Fixed
+- Package version reported correctly when utilised within foreign SCM (from @justjasongreen)
+
+## [1.0.0a1] - 2016-07-21
 ### Added
 - Scrape a list of meets occurring on a given date (from @justjasongreen)
 - Scrape a list of races occurring at a given meet (from @justjasongreen)
@@ -19,5 +23,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Create Python package (from @justjasongreen)
 - Implement DevOps support (from @justjasongreen)
 
+[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0a1...HEAD
 [1.0.0a1]: https://github.com/justjasongreen/punters_client/compare/1.0.0a0...1.0.0a1
 [1.0.0a0]: https://github.com/justjasongreen/punters_client/tree/1.0.0a0
