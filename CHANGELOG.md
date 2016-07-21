@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Scrape the horse associated with a given runner (from @justjasongreen)
 - Scrape the jockey associated with a given runner (from @justjasongreen)
 - Scrape the trainer associated with a given runner (from @justjasongreen)
+- Scrape a list of performances associated with a given profile (from @justjasongreen)
 
 ## [1.0.0a0] - 2016-07-20
 ### Added
