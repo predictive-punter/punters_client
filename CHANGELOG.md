@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Scrape a list of meets occurring on a given date (from @justjasongreen)
 - Scrape a list of races occurring at a given meet (from @justjasongreen)
 - Scrape a list of runners competing in a given race (from @justjasongreen)
+- Scrape the horse associated with a given runner (from @justjasongreen)
 
 ## [1.0.0a0] - 2016-07-20
 ### Added
