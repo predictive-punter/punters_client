@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Scraper.is_compatible_with(version) method (from @justjasongreen)
+- Automate manifest checking by Travis CI (from @justjasongreen)
 ### Fixed
 - Package version reported correctly when utilised within foreign SCM (from @justjasongreen)
 
