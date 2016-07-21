@@ -20,10 +20,7 @@ def get_child_attribute(parent, selector, attribute, index=0):
 def parse_child_attribute(parent, selector, attribute, parser, index=0, default=None):
     """Parse an attribute value from the specified child element"""
 
-    try:
-        return parser(get_child_attribute(parent, selector, attribute, index))
-    except (TypeError, ValueError):
-        return default
+    return try_parse(get_child_attribute(parent, selector, attribute, index), parser, default)
 
 
 def get_child_text(parent, selector, index=0):
@@ -34,13 +31,10 @@ def get_child_text(parent, selector, index=0):
         return child.text_content().strip()
 
 
-def parse_child_text(parent, selector, parser, index=0):
+def parse_child_text(parent, selector, parser, index=0, default=None):
     """Parse the text content of the specified child element"""
 
-    try:
-        return parser(get_child_text(parent, selector, index))
-    except (TypeError, ValueError):
-        return default
+    return try_parse(get_child_text(parent, selector, index), parser, default)
 
 
 def get_child_text_match(parent, selector, pattern, index=0):
@@ -70,7 +64,13 @@ def get_child_text_match_group(parent, selector, pattern, index=0, group=0):
 def parse_child_text_match_group(parent, selector, pattern, parser, index=0, group=0, default=None):
     """Parse a regex match group for the specified child element's text content"""
 
+    return try_parse(get_child_text_match_group(parent, selector, pattern, index, group), parser, default)
+
+
+def try_parse(value, parser, default=None):
+    """Try to parse value using parser, returning default if the parse fails"""
+
     try:
-        return parser(get_child_text_match_group(parent, selector, pattern, index, group))
+        return parser(value)
     except (TypeError, ValueError):
         return default

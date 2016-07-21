@@ -199,3 +199,74 @@ class Scraper:
         """Scrape the profile of the trainer associated with the specified runner"""
 
         return self.scrape_profile(runner['trainer_url'])
+
+    def scrape_performances(self, profile):
+        """Scrape a list of performances associated with the specified profile"""
+
+        def parse_date(ul):
+            value = get_child_text(ul, 'li.timeline-disc b span.date')
+            if value is not None:
+                return self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d-%b-%y'))
+
+        def parse_money(ul, pattern):
+            value = get_child_text_match_group(ul, 'li.timeline-disc', pattern)
+            if value is not None:
+                value = value.replace(',', '')
+                return float(value)
+
+        def parse_winning_time(ul):
+            value = get_child_text_match_group(ul, 'li.timeline-disc', 'Winning Time: ([\d:.]+)')
+            if value is not None:
+                value_parts = value.split(':')
+                if len(value_parts) > 0:
+                    winning_time = float(value_parts[-1])
+                    if len(value_parts) > 1:
+                        winning_time += int(value_parts[0]) * 60
+                    return round(winning_time, 2)
+
+        performances = []
+
+        html = self.get_html(profile['url'])
+        if html is not None:
+            
+            for ul in html.cssselect('ul.timeline'):
+                if 'TRIAL' not in ul.text_content().upper():
+                    result_text = get_child_text(ul, 'span.formSummaryPosition')
+                    if result_text != 'Abn':
+
+                        performance = {
+                            'track':            get_child_text(ul, 'li.timeline-disc b span.simlight'),
+                            'date':             parse_date(ul),
+                            'distance':         parse_child_text_match_group(ul, 'li.timeline-disc span.dist', '(\d+)', int),
+                            'track_condition':  get_child_text(ul, 'span.badge'),
+                            'prize_money':      parse_money(ul, '\$([\d,.]+) \(of'),
+                            'prize_pool':       parse_money(ul, '\(of \$([\d,.]+)'),
+                            'barrier':          parse_child_text_match_group(ul, 'li.timeline-disc', 'Barrier (\d+)', int),
+                            'winning_time':     parse_winning_time(ul),
+                            'starting_price':   parse_money(ul, 'SP: \$([\d.]+)'),
+                            'horse_url':        None,
+                            'jockey_url':       None,
+                            'weight':           None,
+                            'carried':          None,
+                            'lengths':          parse_child_text_match_group(ul, 'span.timeline-right.placed', '([\d.]+)L', float, default=0.0),
+                            'result':           try_parse(result_text, int),
+                            'starters':         parse_child_text(ul, 'span.starters', int),
+                            'scraper_version':  __version__
+                        }
+
+                        for link in ul.cssselect('span.timeline-right.placed a'):
+                            link_href = link.get('href')
+                            for key in ('horse', 'jockey'):
+                                if key in link_href:
+                                    performance[key + '_url'] = self.fix_url(link_href)
+                                    break
+
+                        weights = [float(abbr.get('data-value')) for abbr in ul.cssselect('span.timeline-right.placed abbr') if abbr.get('data-type') == 'weight']
+                        if len(weights) > 0:
+                            performance['weight'] = performance['carried'] = weights[-1]
+                            if len(weights) > 1:
+                                performance['weight'] = weights[0]
+
+                        performances.append(performance)
+
+        return performances
