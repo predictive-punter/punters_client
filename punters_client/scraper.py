@@ -50,6 +50,11 @@ class Scraper:
         response = self.http_client.get(url)
         response.raise_for_status()
         return self.parse_html(response.text)
+
+    def is_compatible_with(self, version):
+        """Return True if the current scraper version is compatible with the specified version"""
+
+        return version.split('.')[0] == __version__.split('.')[0]
     
     def scrape_meets(self, date, meet_url_pattern='/({states})/'.format(states='|'.join(AUSTRALIAN_STATES))):
         """Scrape a list of meets occurring on the specified date"""
