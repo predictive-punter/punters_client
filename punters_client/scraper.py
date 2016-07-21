@@ -194,3 +194,8 @@ class Scraper:
         """Scrape the profile of the jockey associated with the specified runner"""
 
         return self.scrape_profile(runner['jockey_url'])
+
+    def scrape_trainer(self, runner):
+        """Scrape the profile of the trainer associated with the specified runner"""
+
+        return self.scrape_profile(runner['trainer_url'])
