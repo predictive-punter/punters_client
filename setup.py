@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='punters_client',
-    use_scm_version=True,
+    version='1.0.0a1',
     description='Python client library for www.punters.com.au',
     long_description=long_description,
     keywords='client library punters',
@@ -32,17 +32,15 @@ setup(
     license='MIT',
 
     packages=find_packages(exclude=['tests']),
-    setup_requires=[
-        'setuptools_scm'
-    ],
+    setup_requires=[],
     install_requires=[
         'cssselect',
         'pytz',
-        'setuptools_scm',
         'tzlocal'
     ],
     extras_require={
         'dev':  [
+            'bumpversion',
             'check-manifest'
         ],
         'test': [
