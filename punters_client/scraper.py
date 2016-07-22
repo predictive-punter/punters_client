@@ -8,22 +8,23 @@ from . import __version__
 from .html_utils import *
 
 
-AUSTRALIAN_STATES = (
-    'australian-capital-territory',
-    'new-south-wales',
-    'northern-territory',
-    'queensland',
-    'south-australia',
-    'tasmania',
-    'victoria',
-    'western-australia'
-)
-
-
 class Scraper:
     """Provide web scraping functionality for www.punters.com.au"""
 
+    AUSTRALIAN_STATES = (
+        'australian-capital-territory',
+        'new-south-wales',
+        'northern-territory',
+        'queensland',
+        'south-australia',
+        'tasmania',
+        'victoria',
+        'western-australia'
+    )
+
     SOURCE_TIMEZONE = pytz.timezone('Australia/Melbourne')
+
+    URL_ROOT = 'https://www.punters.com.au/'
 
     def __init__(self, http_client, html_parser, local_timezone=tzlocal.get_localzone()):
 
@@ -32,7 +33,7 @@ class Scraper:
 
         self.local_timezone = local_timezone
 
-    def fix_url(self, url, url_root='https://www.punters.com.au'):
+    def fix_url(self, url, url_root=URL_ROOT):
         """Ensure the specified URL is fully qualified by prepending url_root if necessary"""
 
         if not re.search('[a-z]+://.*', url):
@@ -178,41 +179,42 @@ class Scraper:
     def scrape_profile(self, url):
         """Scrape a profile from the specified URL"""
 
-        html = self.get_html(url)
-        if html is not None:
+        if url != self.URL_ROOT:
+            html = self.get_html(url)
+            if html is not None:
 
-            profile = {
-                'url':              url,
-                'name':             get_child_text(html, 'div.moduleItem table caption').replace('Details', '').strip(),
-                'scraper_version':  __version__
-            }
+                profile = {
+                    'url':              url,
+                    'name':             get_child_text(html, 'div.moduleItem table caption').replace('Details', '').strip(),
+                    'scraper_version':  __version__
+                }
 
-            for row in html.cssselect('div.moduleItem table tr'):
-                label = get_child_text(row, 'th')
-                if label is not None:
-                    label = label.replace(':', '').lower()
+                for row in html.cssselect('div.moduleItem table tr'):
+                    label = get_child_text(row, 'th')
+                    if label is not None:
+                        label = label.replace(':', '').lower()
 
-                    if label == 'profile':
-                        groups = get_child_text_match_groups(row, 'td', 'year old (.*) (.*)')
-                        if groups is not None and len(groups) > 1:
-                            profile['colour'] = groups[0]
-                            profile['sex'] = groups[1]
+                        if label == 'profile':
+                            groups = get_child_text_match_groups(row, 'td', 'year old (.*) (.*)')
+                            if groups is not None and len(groups) > 1:
+                                profile['colour'] = groups[0]
+                                profile['sex'] = groups[1]
 
-                    elif label == 'pedigree':
-                        groups = get_child_text_match_groups(row, 'td', '(.*) x (.*)')
-                        if groups is not None and len(groups) > 1:
-                            profile['sire'] = groups[0]
-                            profile['dam'] = groups[1]
+                        elif label == 'pedigree':
+                            groups = get_child_text_match_groups(row, 'td', '(.*) x (.*)')
+                            if groups is not None and len(groups) > 1:
+                                profile['sire'] = groups[0]
+                                profile['dam'] = groups[1]
 
-                    elif label == 'country':
-                        profile['country'] = get_child_text(row, 'td')
+                        elif label == 'country':
+                            profile['country'] = get_child_text(row, 'td')
 
-                    elif label == 'foaled':
-                        value = get_child_text(row, 'td')
-                        if value is not None:
-                            profile['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
+                        elif label == 'foaled':
+                            value = get_child_text(row, 'td')
+                            if value is not None:
+                                profile['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
 
-            return profile
+                return profile
 
     def scrape_horse(self, runner):
         """Scrape the profile of the horse associated with the specified runner"""

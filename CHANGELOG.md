@@ -7,7 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-- No changes... yet!
+### Fixed
+
+- Fix AttributeError when calling scrape_profile(URL_ROOT) (from @justjasongreen)
 
 
 ## [1.0.0a2] - 2016-07-22
