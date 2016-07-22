@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [Unreleased]
+## [1.0.0a3] - 2016-07-23
+
+### Added
+
+- Scraper.URL_ROOT constant (from @justjasongreen)
+
+### Changed
+
+- Moved AUSTRALIAN_STATES constant into Scraper class (from @justjasongreen)
 
 ### Fixed
 
@@ -45,7 +53,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
-[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0a2...HEAD
+[1.0.0a3]: https://github.com/justjasongreen/punters_client/compare/1.0.0a2...1.0.0a3
 [1.0.0a2]: https://github.com/justjasongreen/punters_client/compare/1.0.0a1...1.0.0a2
 [1.0.0a1]: https://github.com/justjasongreen/punters_client/compare/1.0.0a0...1.0.0a1
 [1.0.0a0]: https://github.com/justjasongreen/punters_client/tree/1.0.0a0
