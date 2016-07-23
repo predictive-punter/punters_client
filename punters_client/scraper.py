@@ -29,7 +29,7 @@ class Scraper:
 
     URL_ROOT = 'https://www.punters.com.au/'
 
-    def __init__(self, http_client, html_parser, local_timezone=tzlocal.get_localzone(), concurrent_requests=multiprocessing.cpu_count()):
+    def __init__(self, http_client, html_parser, local_timezone=tzlocal.get_localzone(), concurrent_requests=multiprocessing.cpu_count() * 5):
 
         self.http_client = http_client
         self.parse_html = html_parser
