@@ -17,7 +17,7 @@ setup(
     long_description=long_description,
     keywords='client library punters',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
