@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [Unreleased]
+## [1.0.0b2] - 2016-07-24
 
 ### Changed
 
 - Increase concurrent HTTP requests limit to CPU count x 5 (from @justjasongreen)
+
+### Fixed
+
+- Fix PyPI package classifiers (from @justjasongreen)
 
 
 ## [1.0.0b1] - 2016-07-23
@@ -74,7 +78,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
-[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0b1...HEAD
+[1.0.0b2]: https://github.com/justjasongreen/punters_client/compare/1.0.0b1...1.0.0b2
 [1.0.0b1]: https://github.com/justjasongreen/punters_client/compare/1.0.0a4...1.0.0b1
 [1.0.0a4]: https://github.com/justjasongreen/punters_client/compare/1.0.0a3...1.0.0a4
 [1.0.0a3]: https://github.com/justjasongreen/punters_client/compare/1.0.0a2...1.0.0a3
