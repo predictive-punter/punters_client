@@ -1,5 +1,6 @@
 from datetime import datetime
 import re
+import time
 
 import pytz
 import tzlocal
@@ -45,12 +46,23 @@ class Scraper:
                 url = url_root + '/' + url
         return url
 
-    def get_html(self, url):
+    def get_html(self, url, retry_count=0, max_retries=5):
         """Get the root HTML element from the specified URL"""
 
-        response = self.http_client.get(url)
-        response.raise_for_status()
-        return self.parse_html(response.text)
+        try:
+
+            response = self.http_client.get(url)
+            response.raise_for_status()
+            return self.parse_html(response.text)
+
+        except BaseException:
+
+            if retry_count < max_retries:
+                time.sleep(1)
+                return self.get_html(url, retry_count + 1, max_retries)
+
+            else:
+                raise
 
     def is_compatible_with(self, version):
         """Return True if the current scraper version is compatible with the specified version"""
