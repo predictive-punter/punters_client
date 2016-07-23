@@ -1,5 +1,7 @@
 from datetime import datetime
+import multiprocessing
 import re
+from threading import BoundedSemaphore
 import time
 
 import pytz
@@ -27,12 +29,14 @@ class Scraper:
 
     URL_ROOT = 'https://www.punters.com.au/'
 
-    def __init__(self, http_client, html_parser, local_timezone=tzlocal.get_localzone()):
+    def __init__(self, http_client, html_parser, local_timezone=tzlocal.get_localzone(), concurrent_requests=multiprocessing.cpu_count()):
 
         self.http_client = http_client
         self.parse_html = html_parser
 
         self.local_timezone = local_timezone
+
+        self.request_lock = BoundedSemaphore(concurrent_requests)
 
     def fix_url(self, url, url_root=URL_ROOT):
         """Ensure the specified URL is fully qualified by prepending url_root if necessary"""
@@ -51,9 +55,10 @@ class Scraper:
 
         try:
 
-            response = self.http_client.get(url)
-            response.raise_for_status()
-            return self.parse_html(response.text)
+            with self.request_lock:
+                response = self.http_client.get(url)
+                response.raise_for_status()
+                return self.parse_html(response.text)
 
         except BaseException:
 
