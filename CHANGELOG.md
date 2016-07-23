@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [Unreleased]
+
+### Changed
+
+- Scraper.get_html will retry failed HTTP requests several times before raising exception (from @justjasongreen)
+
+
 ## [1.0.0a3] - 2016-07-23
 
 ### Added
@@ -53,6 +60,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
+[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0a3...HEAD
 [1.0.0a3]: https://github.com/justjasongreen/punters_client/compare/1.0.0a2...1.0.0a3
 [1.0.0a2]: https://github.com/justjasongreen/punters_client/compare/1.0.0a1...1.0.0a2
 [1.0.0a1]: https://github.com/justjasongreen/punters_client/compare/1.0.0a0...1.0.0a1
