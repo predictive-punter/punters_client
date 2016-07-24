@@ -11,6 +11,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - The Scraper.get_html will return None for HTTP 4xx errors (from @justjasongreen)
 
+### Fixed
+
+- Fix integration between Travis CI and Coveralls (from @justjasongreen)
+
 
 ## [1.0.0b2] - 2016-07-24
 
