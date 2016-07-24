@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [Unreleased]
+
+### Changed
+
+- The Scraper.get_html will return None for HTTP 4xx errors (from @justjasongreen)
+
+
 ## [1.0.0b2] - 2016-07-24
 
 ### Changed
@@ -78,6 +85,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
+[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0b2...HEAD
 [1.0.0b2]: https://github.com/justjasongreen/punters_client/compare/1.0.0b1...1.0.0b2
 [1.0.0b1]: https://github.com/justjasongreen/punters_client/compare/1.0.0a4...1.0.0b1
 [1.0.0a4]: https://github.com/justjasongreen/punters_client/compare/1.0.0a3...1.0.0a4

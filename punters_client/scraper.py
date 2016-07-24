@@ -56,9 +56,15 @@ class Scraper:
         try:
 
             with self.request_lock:
+
                 response = self.http_client.get(url)
-                response.raise_for_status()
-                return self.parse_html(response.text)
+                
+                if response.status_code >= 500:
+                    response.raise_for_status()
+                elif response.status_code >= 400:
+                    return None
+                else:
+                    return self.parse_html(response.text)
 
         except BaseException:
 
