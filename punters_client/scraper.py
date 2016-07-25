@@ -202,13 +202,21 @@ class Scraper:
     def scrape_profile(self, url):
         """Scrape a profile from the specified URL"""
 
+        def parse_name(html):
+            name = get_child_text(html, 'h1')
+            if name is not None:
+                span_text = get_child_text(html, 'h1 span')
+                if span_text is not None:
+                    name = name.replace(span_text, '').strip()
+            return name
+
         if url != self.URL_ROOT:
             html = self.get_html(url)
             if html is not None:
 
                 profile = {
                     'url':              url,
-                    'name':             get_child_text(html, 'div.moduleItem table caption').replace('Details', '').strip(),
+                    'name':             parse_name(html),
                     'scraper_version':  __version__
                 }
 
