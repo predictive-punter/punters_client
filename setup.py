@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='punters_client',
-    version='1.0.0b5',
+    version='1.0.0b6',
     description='Python client library for www.punters.com.au',
     long_description=long_description,
     keywords='client library punters',
