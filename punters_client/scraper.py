@@ -266,6 +266,7 @@ class Scraper:
             value = get_child_text_match_group(ul, 'li.timeline-disc', pattern)
             if value is not None:
                 value = value.replace(',', '')
+                value = re.sub('\.+', '.', value)
                 return float(value)
 
         def parse_winning_time(ul):
