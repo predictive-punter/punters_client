@@ -267,6 +267,10 @@ class Scraper:
             if value is not None:
                 value = value.replace(',', '')
                 value = re.sub('\.+', '.', value)
+                while value[0] == '.':
+                    value = value[1:]
+                while value[-1] == '.':
+                    value = value[:-1]
                 return float(value)
 
         def parse_winning_time(ul):

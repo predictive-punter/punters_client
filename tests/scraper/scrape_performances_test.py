@@ -256,7 +256,7 @@ def test_unexpected_performances(expected_performances, scraped_performances):
     check_unexpected_items(expected_performances, scraped_performances, ['date', 'horse_url', 'track'])
 
 
-def test_mangled_starting_price(scraper, source_timezone):
+def test_mangled_starting_price_42(scraper, source_timezone):
     """The scrape_performances method should handle mangled starting prices (see issue #42)"""
 
     horse = {
@@ -270,6 +270,25 @@ def test_mangled_starting_price(scraper, source_timezone):
         if performance['date'] == source_timezone.localize(datetime(2013, 4, 27)) and performance['track'] == 'Hobart':
             found_performance = True
             assert performance['starting_price'] == 22.70
+            break
+
+    assert found_performance
+
+
+def test_mangled_starting_price_44(scraper, source_timezone):
+    """The scrape_performances method should handle mangled starting prices (see issue #44)"""
+
+    horse = {
+        'url':  'https://www.punters.com.au/horses/Glove-Man_223429/'
+    }
+
+    performances = scraper.scrape_performances(horse)
+
+    found_performance = False
+    for performance in performances:
+        if performance['date'] == source_timezone.localize(datetime(2013, 3, 13)) and performance['track'] == 'Matamata':
+            found_performance = True
+            assert performance['starting_price'] == 2.80
             break
 
     assert found_performance
