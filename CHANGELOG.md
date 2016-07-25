@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [Unreleased]
+
+### Fixed
+
+- Fix parsing of horse/jockey/trainer names (from @justjasongreen)
+
+
 ## [1.0.0b5] - 2016-07-25
 
 ### Fixed
@@ -103,6 +110,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
+[Unreleased]: https://github.com/justjasongreen/punters_client/compare/1.0.0b5...HEAD
 [1.0.0b5]: https://github.com/justjasongreen/punters_client/compare/1.0.0b4...1.0.0b5
 [1.0.0b4]: https://github.com/justjasongreen/punters_client/compare/1.0.0b3...1.0.0b4
 [1.0.0b3]: https://github.com/justjasongreen/punters_client/compare/1.0.0b2...1.0.0b3
