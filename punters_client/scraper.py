@@ -243,7 +243,10 @@ class Scraper:
                         elif label == 'foaled':
                             value = get_child_text(row, 'td')
                             if value is not None:
-                                profile['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
+                                try:
+                                    profile['foaled'] = self.SOURCE_TIMEZONE.localize(datetime.strptime(value, '%d/%m/%Y'))
+                                except (TypeError, ValueError):
+                                    profile['foaled'] = None
 
                 return profile
 

@@ -30,3 +30,14 @@ def test_expected_values(expected_values, scraped_values):
     """The scrape_horse method should return a dictionary containing all expected values"""
 
     assert scraped_values == expected_values
+
+
+def test_invalid_foaled_date(scraper):
+
+    runner = {
+        'horse_url':    'https://www.punters.com.au/horses/Bonner_152493/'
+    }
+
+    horse = scraper.scrape_horse(runner)
+
+    assert horse['foaled'] is None
