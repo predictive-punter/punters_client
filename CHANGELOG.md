@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [Unreleased]
+## [1.0.0b7] - 2016-07-27
+
+### Changed
+
+- Ignore flake8 check for E241 (from @justjasongreen)
 
 ### Fixed
 
@@ -117,6 +121,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Implement DevOps support (from @justjasongreen)
 
 
+[1.0.0b7]: https://github.com/justjasongreen/punters_client/compare/1.0.0b6...1.0.0b7
 [1.0.0b6]: https://github.com/justjasongreen/punters_client/compare/1.0.0b5...1.0.0b6
 [1.0.0b5]: https://github.com/justjasongreen/punters_client/compare/1.0.0b4...1.0.0b5
 [1.0.0b4]: https://github.com/justjasongreen/punters_client/compare/1.0.0b3...1.0.0b4
