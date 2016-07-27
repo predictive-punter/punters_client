@@ -282,7 +282,10 @@ class Scraper:
                     value = value[1:]
                 while value[-1] == '.':
                     value = value[:-1]
-                return float(value)
+                try:
+                    return float(value)
+                except (TypeError, ValueError):
+                    return None
 
         def parse_winning_time(ul):
             value = get_child_text_match_group(ul, 'li.timeline-disc', 'Winning Time: ([\d:.]+)')

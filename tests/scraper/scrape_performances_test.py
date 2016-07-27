@@ -292,3 +292,22 @@ def test_mangled_starting_price_44(scraper, source_timezone):
             break
 
     assert found_performance
+
+
+def test_mangled_starting_price_50(scraper, source_timezone):
+    """The scrape_performances method should handle mangled starting prices (see issue #50)"""
+
+    horse = {
+        'url':  'https://www.punters.com.au/horses/Jurassic_17595/'
+    }
+
+    performances = scraper.scrape_performances(horse)
+
+    found_performance = False
+    for performance in performances:
+        if performance['date'] == source_timezone.localize(datetime(2009, 11, 22)) and performance['track'] == 'Launceston':
+            found_performance = True
+            assert performance['starting_price'] is None
+            break
+
+    assert found_performance
